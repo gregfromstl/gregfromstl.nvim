@@ -43,6 +43,11 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
+-- vim.opt.statuscolumn = '%#NonText#%{&nu?v:lnum:""}' .
+-- 		 '%=%{&rnu&&(v:lnum%2)?"\ ".v:relnum:""}' .
+-- 		 '%#LineNr#%{&rnu&&!(v:lnum%2)?"\ ".v:relnum:""}'
+vim.opt.stc = '%{v:lnum}   %=%{v:relnum} | '
+
 -- Enable break indent
 vim.opt.breakindent = true
 
