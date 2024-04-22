@@ -43,11 +43,6 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
--- vim.opt.statuscolumn = '%#NonText#%{&nu?v:lnum:""}' .
--- 		 '%=%{&rnu&&(v:lnum%2)?"\ ".v:relnum:""}' .
--- 		 '%#LineNr#%{&rnu&&!(v:lnum%2)?"\ ".v:relnum:""}'
-vim.opt.stc = '%{v:lnum}   %=%{v:relnum} | '
-
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -132,6 +127,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Get out of insert mode easily
 vim.keymap.set('i', 'jj', '<Esc>j', { desc = 'Leave insert mode quickly' })
 vim.keymap.set('i', 'kk', '<Esc>k', { desc = 'Leave insert mode quickly' })
+
+-- Move lines up and down
+vim.keymap.set('n', '<C-k>', ':m .-2<CR>==')
+vim.keymap.set('n', '<C-j>', ':m .+1<CR>==')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
