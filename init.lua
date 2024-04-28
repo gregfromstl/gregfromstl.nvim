@@ -146,6 +146,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- [[ FileType Autocommands ]]
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+  pattern = { '*.js', '*.ts', '*.jsx', '*.tsx' },
+  callback = function()
+    vim.schedule(function()
+      vim.keymap.set('n', 'cl', "iconsole.log('');<Esc>hhi", { desc = 'Insert log', buffer = true })
+    end)
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -776,4 +787,6 @@ require('lazy').setup({
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+vim.cmd [[
+  set tabstop=2
+]]
