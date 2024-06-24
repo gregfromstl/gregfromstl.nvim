@@ -82,6 +82,11 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Tab sizing and replace tabs with spaces
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -128,9 +133,13 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('i', 'jj', '<Esc>j', { desc = 'Leave insert mode quickly' })
 vim.keymap.set('i', 'kk', '<Esc>k', { desc = 'Leave insert mode quickly' })
 
+-- Save the soy dev way
+vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save current buffer' })
+vim.keymap.set('i', '<C-s>', '<esc>:w<CR>', { desc = 'Save current buffer' })
+
 -- Move lines up and down
-vim.keymap.set('n', '<C-k>', ':m .-2<CR>==')
-vim.keymap.set('n', '<C-j>', ':m .+1<CR>==')
+-- vim.keymap.set('n', '<C-k>', ':m .-2<CR>==')
+-- vim.keymap.set('n', '<C-j>', ':m .+1<CR>==')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -801,5 +810,4 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 vim.cmd [[
-  set tabstop=2
 ]]
