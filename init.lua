@@ -161,7 +161,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = { '*.js', '*.ts', '*.jsx', '*.tsx' },
   callback = function()
     vim.schedule(function()
-      vim.keymap.set('n', 'cl', "iconsole.log('');<Esc>hhi", { desc = 'Insert log', buffer = true })
+      vim.keymap.set('n', 'cl', 'iconsole.log();<Esc>hi', { desc = 'Insert log', buffer = true })
     end)
   end,
 })
