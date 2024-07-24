@@ -188,11 +188,17 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-fugitive', -- Git integration
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    config = function()
+      require('catppuccin').setup()
 
-  -- Dracula theme
-  { 'Mofiqul/dracula.nvim', opts = {
-    theme = 'dracula-nvim',
-  } },
+      -- setup must be called before loading
+      vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
 
   -- Use `opts = {}` to force a plugin to be loaded.
   --
@@ -305,6 +311,11 @@ require('lazy').setup({
               ['<c-enter>'] = 'to_fuzzy_refine',
               ['<c-esc>'] = actions.close,
             },
+          },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
           },
         },
         -- pickers = {}
