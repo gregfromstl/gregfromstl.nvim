@@ -67,6 +67,9 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Disable swap files
+vim.opt.swapfile = false
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -324,6 +327,7 @@ require('lazy').setup({
             require('telescope.themes').get_dropdown(),
           },
           ['file_browser'] = {
+            hidden = true,
             mappings = {
               ['i'] = {
                 -- custom insert mode mappings
@@ -509,40 +513,40 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
-        biome = {
-          {
-            cmd = { 'biome', 'lsp-proxy' },
-            filetypes = {
-              'javascript',
-              'javascriptreact',
-              'json',
-              'jsonc',
-              'typescript',
-              'typescript.tsx',
-              'typescriptreact',
-              'astro',
-              'svelte',
-              'vue',
-              'css',
-            },
-            root_dir = require('lspconfig.util').root_pattern('biome.json', 'biome.jsonc'),
-            single_file_support = false,
-          },
-          docs = {
-            description = [[
-https://biomejs.dev
-
-Toolchain of the web. [Successor of Rome](https://biomejs.dev/blog/annoucing-biome).
-
-```sh
-npm install [-g] @biomejs/biome
-```
-]],
-            default_config = {
-              root_dir = [[root_pattern('biome.json', 'biome.jsonc')]],
-            },
-          },
-        },
+        -- biome = {
+        --   {
+        --     cmd = { 'biome', 'lsp-proxy' },
+        --     filetypes = {
+        --       'javascript',
+        --       'javascriptreact',
+        --       'json',
+        --       'jsonc',
+        --       'typescript',
+        --       'typescript.tsx',
+        --       'typescriptreact',
+        --       'astro',
+        --       'svelte',
+        --       'vue',
+        --       'css',
+        --     },
+        --     root_dir = require('lspconfig.util').root_pattern('biome.json', 'biome.jsonc'),
+        --     single_file_support = false,
+        --   },
+        --           docs = {
+        --             description = [[
+        -- https://biomejs.dev
+        --
+        -- Toolchain of the web. [Successor of Rome](https://biomejs.dev/blog/annoucing-biome).
+        --
+        -- ```sh
+        -- npm install [-g] @biomejs/biome
+        -- ```
+        -- ]],
+        --             default_config = {
+        --               root_dir = [[root_pattern('biome.json', 'biome.jsonc')]],
+        --             },
+        --           },
+        --         },
 
         lua_ls = {
           -- cmd = {...},
