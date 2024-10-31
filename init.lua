@@ -189,40 +189,6 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 require('lazy').setup({
-  {
-    'olimorris/codecompanion.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'hrsh7th/nvim-cmp',
-      'nvim-telescope/telescope.nvim',
-      { 'stevearc/dressing.nvim', opts = {} },
-    },
-    config = function()
-      require('codecompanion').setup {
-        adapters = {
-          anthropic = function()
-            return require('codecompanion.adapters').extend('anthropic', {
-              env = {
-                api_key = os.getenv 'ANTHROPIC_API_KEY',
-              },
-            })
-          end,
-        },
-        strategies = {
-          chat = {
-            adapter = 'anthropic',
-          },
-          inline = {
-            adapter = 'anthropic',
-          },
-          agent = {
-            adapter = 'anthropic',
-          },
-        },
-      }
-    end,
-  },
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-fugitive', -- Git integration
   {
@@ -888,14 +854,3 @@ require('lazy').setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 vim.cmd [[
 ]]
-
--- CodeCompanion keymaps
-vim.api.nvim_set_keymap('n', '<C-a>', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<C-a>', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<LocalLeader>a', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<LocalLeader>a', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', 'ga', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>da', ':diffget<CR>', { noremap = true, silent = true, desc = 'Accept current diff change' })
-
--- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd [[cab cc CodeCompanion]]
