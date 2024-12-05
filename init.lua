@@ -203,6 +203,11 @@ require('lazy').setup({
         adapters = {
           anthropic = function()
             return require('codecompanion.adapters').extend('anthropic', {
+              schema = {
+                model = {
+                  default = 'claude-3-5-sonnet-20240620',
+                },
+              },
               env = {
                 api_key = os.getenv 'ANTHROPIC_API_KEY',
               },
@@ -222,6 +227,17 @@ require('lazy').setup({
         },
       }
     end,
+  },
+  {
+    'luckasRanarison/tailwind-tools.nvim',
+    name = 'tailwind-tools',
+    build = ':UpdateRemotePlugins',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-telescope/telescope.nvim', -- optional
+      'neovim/nvim-lspconfig', -- optional
+    },
+    opts = {},
   },
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-fugitive', -- Git integration
@@ -427,6 +443,8 @@ require('lazy').setup({
 
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    'jose-elias-alvarez/null-ls.nvim',
+    'MunifTanjim/eslint.nvim',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
@@ -588,7 +606,6 @@ require('lazy').setup({
         --             },
         --           },
         --         },
-
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
